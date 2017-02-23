@@ -19,11 +19,41 @@ wrench is in the locker room and you fix the escape pod in the bay
 		
 		<script src= 'main.js'></script>
 
+		<style>
+	.popup {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+	}
+
+	.popuptext {
+		visibility: hidden;
+		background-color: #eee;
+		text-align: center;
+		border-radius: 6px;
+		padding-right: 8px;
+		padding-left: 8px;
+		line-height: 125%;
+		position: absolute;
+		z-index: 1;
+		top: 15px;
+	}
+	#body{
+		background-color: black;
+	}
+	#RoomDesc{
+		color: white;
+		font-size: 20px;
+	}
+	</style>
 	</head>
 
-	<body>
-
+	<body id='body'>
+	<div align='center'>
 		<p id='RoomDesc'><a href='#' onclick='enterBridge()'>Click Here</a> to start the game</p>
-
+		<br>
+		<p id='allInv'></p>
+		
+	</div>
 	</body>
 </html>

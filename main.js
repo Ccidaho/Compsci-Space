@@ -4,7 +4,8 @@ function enterBridge() {
 	
 	description = 
 		"<p>You find yourself on a dimly lit spaceship and can see a small sign hanging above an "+
-		"entrance to another room.</p> "+
+		"entrance to another room. You're not sure how you got here but you have to get back home "+
+		"before the spaghetti burns.</p> "+
 		"<p>You can just barely make out the sign, it says "+
 		"'<a href='#' onclick='enterEngine()'>Engine Room</a>'.</p>";
 	} else {
@@ -93,8 +94,8 @@ if (input == 1) {
 	description = "<p>As you enter the locker room, you can see</p>" +
 	"<p> many lockers, each of which are unlocked due to the manual power</p>" +
 	"<p> reset which occured when you turned the power back on. </p>" +
-	"<br><p><a href='#' onclick='lckrOpen()'>Crack Open A Locker</a></p>" +
-	"<br><p>Or you could head back to the <a onclick='enterBridge()'>Bridge</a></p>";
+	"<br><p><a href='#' onclick='lckrOpen()'>Crack Open A Locker</a></p><p id='lckrNum'>10/10</p>" +
+	"<br><p>Or you could head back to the <a href='#' onclick='enterBridge()'>Bridge</a></p>";
 var roomRan = document.getElementById('RoomDesc');
 roomRan.innerHTML = description;}
 if (input == 2) {
@@ -107,9 +108,16 @@ roomRan.innerHTML = description;
 }
 }
 
+var lckrOpenable = 9;
+
 function lckrOpen() {
-	var tmpRan = Math.floor(Math.random() * 5);
-	if(tmpRan == 0){
+	
+	var tmpRan = Math.floor(Math.random() * lckrOpenable);
+	lckrOpenable --;
+	var tmpOpn = lckrOpenable + 1
+	console.log(tmpOpn);
+	document.getElementById('lckrNum').innerHTML = tmpOpn + "/10";
+	if(tmpRan == 0||lckrOpenable == 0){
 		description = "<p>As you enter the locker room, you can see</p>" +
 		"<p> many lockers, each of which are unlocked due to the manual power</p>" +
 		"<p> reset which occured when you turned the power back on. </p>" +
@@ -171,7 +179,7 @@ console.log('enterLightPod')
 		"<p>You enter the escape pod bay and find one escape pod that hasn't been launched yet </p>"+
 		"<p>The escape pod's engine is not functioning, " +
 		"there might be a way to " +
-		"<a href='#' onclick='fixPod()'>Salamaamamai</a>" +
+		"<a href='#' onclick='fixPod()'>fix</a>" +
 		" it...</p>";
 		
 	var roomRan = document.getElementById('RoomDesc');
@@ -193,7 +201,7 @@ console.log('fixPod')
 function enterRejection() {
 console.log('enterRejection')
 	var description =
-		"<p>You need a tuewul it might be on the " +
+		"<p>You need a tool it might be on the " +
 		"<a href='#' onclick='enterBridge()'>bridge</a>." +
 		"</p>";
 		var roomRan = document.getElementById('RoomDesc');
@@ -204,7 +212,7 @@ console.log('enterRejection')
 function endGame() {
 console.log('endGame')
 	var description =
-		"<p>The door salamied shut behind you, the pod " +
+		"<p>The door slammed shut behind you, the pod " +
 		"has started to shake...<br>" +
 		"You were lanched back to earth.</p>"+
 		"<p>You Win</p>";
