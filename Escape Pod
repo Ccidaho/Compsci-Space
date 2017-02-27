@@ -4,7 +4,7 @@ console.log('enterLightPod')
 	var description =
 		"<p>The escape pods engine is not functioning, " +
 		"there might be a way to " +
-		"<a herf'#' onclick='fixPod()'>fix</a>" +
+		"<a href'#' onclick='fixPod()'>fix</a>" +
 		" it...</p>";
 }
 
@@ -24,7 +24,7 @@ function enterRejection() {
 console.log('enterRejection')
 	var description =
 		"<p>You need a tool it might be on the" +
-		"<a herf'#' onclick='enterBridge()'>bridge</a>." +
+		"<a href'#' onclick='enterBridge()'>bridge</a>." +
 		"</p>";
 }
 
