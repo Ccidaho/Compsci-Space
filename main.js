@@ -1,3 +1,5 @@
+var time = 0;
+
 function enterBridge() {
 
 	if (powerOn.toggle == 0) {
@@ -17,21 +19,48 @@ function enterBridge() {
 		"<p>and one more that leads to the "+
 		"<a href='#' onclick='enterLightPod()'>escape pod bay</a></p>";
 	}
-		roomDesc = document.getElementById('RoomDesc');
-		roomDesc.innerHTML = description;
-
-
+	roomDesc = document.getElementById('RoomDesc');
+	roomDesc.innerHTML = description;
+	document.getElementById('RoomTitle').innerHTML = "The Bridge";
+		
 }
 
 function enterEngine() {
-
-	description = 
-		"<p>You enter the engine room and find a button that turns on the <a href='#' onclick='powerOn.press()'>emergency power</a>.</p> "+
-		"<p>There is only one exit in this room, back to the <a href='#' onclick='enterBridge()'>bridge</a></p>";
+	
+	if(time >= 40){
 		
+		description = 
+			"<p>You enter the engine room and find a button that turns on the <a href='#' onclick='powerOn.press()'>emergency power</a>.</p> "+
+			"<p>There is only one exit in this room, back to the <a href='#' onclick='enterBridge()'>bridge</a></p>"+
+			"<p>But as you search harder you notice a <a href='#' onclick='secretRoom()'>secret hatch</a> in the corner</p>";
+		
+	} else{
+		
+		description = 
+			"<p>You enter the engine room and find a button that turns on the <a href='#' onclick='powerOn.press()'>emergency power</a>.</p> "+
+			"<p>There is only one exit in this room, back to the <a href='#' onclick='enterBridge()'>bridge</a></p>";
+		
+	}
+	
+	
+	document.getElementById('RoomTitle').innerHTML = "Engine Room";
 	roomDesc = document.getElementById('RoomDesc');
 	roomDesc.innerHTML = description;
 
+}
+
+function secretRoom(){
+	
+	description = 
+		"<p>The secret hatch leads to an observation deck.</p>"+
+		"<p>As you step into the room to get a better view of the space outside</p>"+
+		"<p>Someone closes the hatch and bars it shut.</p>"+
+		"<p>You have no way to get out and end up dying of thirst while watching the endless depths of space.</p>";
+	
+	document.getElementById('RoomTitle').innerHTML = "GAME OVER";
+	roomDesc = document.getElementById('RoomDesc');
+	roomDesc.innerHTML = description;
+	
 }
 
 var powerOn = {
@@ -61,8 +90,6 @@ var powerOn = {
 			body = document.getElementById('body');
 			body.style.backgroundColor = 'white';
 			powerOn.toggle = 1
-			
-			
 		
 		}
 		roomDesc = document.getElementById('RoomDesc');
@@ -83,29 +110,31 @@ function placeholder() {
 
 }
 
-//kode 4 lkr rum
+//code for the locker room
 
 var curInv =[];
 var posInv =["Laser-Tool", "Holy-Bible"];
 
 function lckrRoom(input) {
-if(curInv[0] == posInv[0]) {input ++;}
-if (input == 1) {
-	description = "<p>As you enter the locker room, you can see</p>" +
-	"<p> many lockers, each of which are unlocked due to the manual power</p>" +
-	"<p> reset which occured when you turned the power back on. </p>" +
-	"<br><p><a href='#' onclick='lckrOpen()'>Crack Open A Locker</a></p><p id='lckrNum'>10/10</p>" +
-	"<br><p>Or you could head back to the <a href='#' onclick='enterBridge()'>Bridge</a></p>";
-var roomRan = document.getElementById('RoomDesc');
-roomRan.innerHTML = description;}
-if (input == 2) {
-	description = "<p>As you enter the locker room, you can see</p>" +
-	"<p> many lockers, each of which are unlocked due to the manual power</p>" +
-	"<p> reset which occured when you turned the power back on. </p>" +
-	"<br><p><a href='#' onclick='enterBridge()'>Bridge</a></p>";
-var roomRan = document.getElementById('RoomDesc');
-roomRan.innerHTML = description;
-}
+	if(curInv[0] == posInv[0]) {input ++;}
+		if (input == 1) {
+		description = "<p>As you enter the locker room, you can see</p>" +
+			"<p> many lockers, each of which are unlocked due to the manual power</p>" +
+			"<p> reset which occured when you turned the power back on. </p>" +
+			"<br><p><a href='#' onclick='lckrOpen()'>Crack Open A Locker</a></p><p id='lckrNum'>10/10</p>" +
+			"<br><p>Or you could head back to the <a href='#' onclick='enterBridge()'>Bridge</a></p>";
+		var roomRan = document.getElementById('RoomDesc');
+		roomRan.innerHTML = description;
+		}
+	if (input == 2) {
+		description = "<p>As you enter the locker room, you can see</p>" +
+		"<p> many lockers, each of which are unlocked due to the manual power</p>" +
+		"<p> reset which occured when you turned the power back on. </p>" +
+		"<br><p><a href='#' onclick='enterBridge()'>Bridge</a></p>";
+	var roomRan = document.getElementById('RoomDesc');
+	roomRan.innerHTML = description;
+	}
+	document.getElementById('RoomTitle').innerHTML = "Locker Room";
 }
 
 var lckrOpenable = 9;
@@ -153,13 +182,13 @@ var laserTool = {
 						"Examine" +
 					"</u>";
 		
-		return(menu)
-		},
+	return(menu)
+	},
 		
 		menuDisplay: function () {
 		popup = document.getElementById('laserMenuId');
 		popup.style.visibility = 'visible';
-		},
+	},
 		examine: function () {
 		
 		document.getElementById('RoomDesc').innerHTML += "<p>You examine the laser tool and" +
@@ -167,14 +196,26 @@ var laserTool = {
 		
 		popup = document.getElementById('laserMenuId');
 		popup.style.visibility = 'hidden';
-		},
-
+	},
 
 }
 
 /* ESCAPE POD */
 function enterLightPod() {
 console.log('enterLightPod')
+var killChance = Math.floor(Math.random() * 3);
+console.log(killChance)
+if(killChance == 0){
+	var description =
+		"<p>The escape pod starts to rattle! You realize that it's about to explode!</p>" +
+		"<p>Before you can do anything you're blown to bits and all you hear is</p>" +
+		"<p><a href='#' onclick='window.location.reload()'>Restart?</a></p>"
+		var roomRan = document.getElementById('RoomDesc');
+		roomRan.innerHTML = description;
+		document.getElementById('RoomTitle').innerHTML = "GAME OVER";
+		
+	}
+		else{
 	var description =
 		"<p>You enter the escape pod bay and find one escape pod that hasn't been launched yet </p>"+
 		"<p>The escape pod's engine is not functioning, " +
@@ -184,6 +225,8 @@ console.log('enterLightPod')
 		
 	var roomRan = document.getElementById('RoomDesc');
 	roomRan.innerHTML = description;
+	document.getElementById('RoomTitle').innerHTML = "Escape Pod";
+	}
 }
 
 /* FIX POD */
@@ -200,12 +243,16 @@ console.log('fixPod')
 /* REJECTED */
 function enterRejection() {
 console.log('enterRejection')
+
+	
 	var description =
 		"<p>You need a tool it might be on the " +
 		"<a href='#' onclick='enterBridge()'>bridge</a>." +
 		"</p>";
-		var roomRan = document.getElementById('RoomDesc');
+	var roomRan = document.getElementById('RoomDesc');
 	roomRan.innerHTML = description;
+	document.getElementById('RoomTitle').innerHTML = "Escape Pod";
+	
 }
 
 /* END GAME */
@@ -216,6 +263,17 @@ console.log('endGame')
 		"has started to shake...<br>" +
 		"You were lanched back to earth.</p>"+
 		"<p>You Win</p>";
-		var roomRan = document.getElementById('RoomDesc');
+	var roomRan = document.getElementById('RoomDesc');
 	roomRan.innerHTML = description;
+	document.getElementById('RoomTitle').innerHTML = "Victory!";
 }
+
+
+function timer() {
+
+	time ++;
+	console.log(time);
+	
+}
+
+setInterval(timer, 1000);
