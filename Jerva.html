@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<script src='Jerva.js'></script>
+	<style>
+	table, th, td {
+border: 1px solid black;
+border: 1px solid black;
+}
+	
+	
+	</style>
+	
+	</head>
+	<body onload='svLoadData()'>
+	<div align='center'>
+	<br>
+	<br>
+	<p>Get Money Get Sticks</p>
+	<br>
+	<table>
+			<tr>
+		<th>Money</th>
+		<th>Sticks</th>
+		</tr>
+			<tr>
+		<td><p id='CurMoney'>0$</p></td>
+		<td><p id='CurSticks'>0</p></td>
+		</tr>
+			<tr>
+		<td id='MoneyButtonTd'><button onclick='getMoney(1)'>Get Money</button></td>
+		<td id='StickButtonTd'><button onclick='getStick(1)'>Buy A Stick</button></td>
+		</tr>
+			<tr>
+		<td id='MoneyCostTd'></td>
+		<td id='StickCostTd'><p id='StickCost'>4$</p></td>
+		</tr>
+	</table>
+	<br> <button onclick='svData()'>Save Data</button>
+	<br> <button onclick='svLoadData()'>Load Data</button>
+	<br> <button onclick='rmvSave()'>Remove</button>
+	<br><br><button onclick='addUpgrades()'>Purchase 'Sticked' for the low low price of 10$</button>
+	<h1>Upgrades Bought</h1>
+	<p id='Upgrades'></p>
+	</div>
+	</body>
+</html>	
