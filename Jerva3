@@ -1,0 +1,152 @@
+
+//View Below For Game Code
+
+var allUpgrades = [' TwoMoney', ' Sticked', ' Test'];
+var curUpgrades = [];
+var VirtualMoney = 0;
+var Sticks = 0;
+var costStick = 10;
+
+
+function getMoney(value) {
+VirtualMoney += value;
+
+updateInfo();
+}
+
+function getStick(value) {
+if(VirtualMoney >= costStick) {
+Sticks += value;
+VirtualMoney -= costStick;
+costStick = Math.floor(costStick * 1.1);
+	}
+updateInfo();
+}
+
+function updateUpgrades(){
+if(CheckUpgrade(0) !== -1){
+document.getElementById('moneyButtonId').innerHTML = 
+"<button id='moneyButton' onclick='getMoney(2)'>Get Money</button>";
+}
+if(CheckUpgrade(1) !== -1){
+document.getElementById('stickButtonId').innerHTML = 
+"<button id='moneyButton' onclick='getSticks(4)'>Get Sticks</button>";
+}
+
+}
+var upOne = 0;
+var upTwo = 0;
+function updateUpgradesSale(){
+if(VirtualMoney >= 1 && upOne === 0){
+upOne = 1;
+document.getElementById('upgradesSale').innerHTML += 
+"<button id='purchaseUpgrade(0)id' onclick='purchaseUpgrade(0)'>Get More Money Per Click! 10$</button>";
+
+}
+if(VirtualMoney >= 20 && upTwo === 0){
+upTwo = 1;
+document.getElementById('upgradesSale').innerHTML += 
+"<br> <button id='purchaseUpgrade(1)id' onclick='purchaseUpgrade(1)'>Get More Sticks Per Purchase! 50$</button>";
+
+}
+
+
+}
+
+function purchaseUpgrade(input){
+if(input === 0 && VirtualMoney >= 10 && CheckUpgrade(0) <= -1){
+VirtualMoney -= 10;
+AddUpgrade(0);
+document.getElementById("purchaseUpgrade(0)id").style.visibility='hidden';
+}
+if(input == 1 && VirtualMoney >= 50){
+VirtualMoney -= 50;
+AddUpgrade(1);
+document.getElementById("purchaseUpgrade(1)id").style.visibility='hidden';
+}
+updateInfo();
+}
+
+function updateInfo() {
+updateUpgrades();
+updateUpgradesSale();
+document.getElementById('CurMoney').innerHTML = 'Money: ' +VirtualMoney + '$';
+document.getElementById('CurSticks').innerHTML = 'Sticks: ' + Sticks;
+document.getElementById('StickCost').innerHTML = 'Cost Of Stick: ' + costStick + '$';
+document.getElementById('Upgrades').innerHTML = curUpgrades.toString();
+}
+
+
+
+//Variables Used In Dealing With Items
+//Checking Items Here
+var amountUpgrade = 0;
+var temporaryAmount = 0;
+var tmpUpgrade = -1;
+
+function CheckUpgrade(input){
+return curUpgrades.lastIndexOf(allUpgrades[input]); 
+}
+
+function checkAmountUpgrade(upgrade) {
+amountUpgrade = 0;
+temporaryAmount = 0;
+tmpUpgrade = upgrade;
+curUpgrades.forEach(checkAmount)
+temporaryAmount = 0;
+tmpUpgrade = -1;
+return(amountItem);}
+
+function checkAmount(curVal, index){
+if(curVal == allUpgrades[tmpItem]){
+temporaryAmount ++; // <--- Spaghetti Codes
+amountUpgrade = temporaryAmount;}
+}
+//Adding/Removal Of Items Is Dealt With Here
+function AddUpgrade(input){
+curUpgrades.unshift(allUpgrades[input]);
+updateInfo();
+}
+function RemoveUpgrade(input){
+var removalOfThing = CheckUpgrade(input);
+	curUpgrades.splice(removalOfThing, 1);
+}
+
+
+
+//Saving
+function addDash(item) {return item + "-";}
+function svData() {
+
+
+var tmpUpgrades = (curUpgrades.map(addDash)).toString();
+var svUpgrades = tmpUpgrades.replace(/,/gi, "");
+var save ={svUpgrades: svUpgrades, VirtualMoney: VirtualMoney, Sticks: Sticks};
+localStorage.setItem("advntSave",JSON.stringify(save));
+}
+
+
+
+function svLoadData() {
+
+var savegame = JSON.parse(localStorage.getItem("advntSave"));
+if (typeof savegame.svUpgrades !== undefined) {
+svUpgrades = savegame.svUpgrades;
+curUpgrades = svUpgrades.split("-");
+curUpgrades.splice(curUpgrades.lastIndexOf(""));
+	}
+if(typeof savegame.VirtualMoney !== undefined) {
+VirtualMoney = Math.floor(savegame.VirtualMoney);
+	}	
+if(typeof savegame.Sticks !== undefined) {
+Sticks = Math.floor(savegame.Sticks);
+}
+	
+	
+updateInfo();	
+}
+
+function rmvSave() {localStorage.removeItem("advntSave");}
+
+
+
