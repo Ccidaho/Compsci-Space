@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<script src='Jerva.js'></script>
+	<link href="https://fonts.googleapis.com/css?family=Droid+Serif|Jim+Nightshade" rel="stylesheet">
+	<style>
+	body{
+background-color: #816E55;
+font-family: 'Droid Serif', serif;
+}
+
+	h1{
+font-family: 'Jim Nightshade', cursive;
+font-size: 24;	
+}
+	p{
+align: center;	
+}
+	button{
+font-family: 'Droid Serif', serif;	
+padding: 5px;
+border-radius: 4px;
+}
+	table{
+text-align: center;
+padding: 20px;
+}
+	
+	
+	.leftAlign{
+float:left;
+width: 70%;
+
+}
+	.rightAlign{
+float:right;
+width: 30%;
+}
+
+	</style>
+	
+	</head>
+	<body onload='svLoadData()'>
+	<div class='leftAlign' align='center'>
+	<br>
+	<br>
+	<br>
+
+	<table>
+	<td><p id='CurMoney'>Money: 0$</p> </td>
+	<td><p id='CurSticks'>Sticks: 0</p></td>
+	<td><p id='StickCost'>Cost Of Stick: 10$</p></td>
+	</table>	
+	
+
+		<p id='moneyButtonId'><button id='moneyButton' onclick='getMoney(1)'>Get Money</button></p>
+		<p id='stickButtonId'><button id='stickButton' onclick='getStick(1)'>Buy A Stick</button></p>
+		
+	<table align='left'>
+	<tr>
+	<th><h1>Upgrades For Sale</h1></th>
+	</tr>
+	<tr>
+	<td id='upgradesSale'></td>
+	</tr>
+	</table>
+	<table align='left'>
+	<tr>
+	<th><h1>Upgrades Bought</h1></th>
+	</tr>
+	<tr>
+	<td ><h1 id='Upgrades'> </h1></td>
+	</tr>
+	</table>
+
+	</div>
+	<div class='rightAlign'>
+	<br> <button onclick='svData()'>Save Data</button>
+	<br> <button onclick='svLoadData()'>Load Data</button>
+	<br> <button onclick='rmvSave()'>Remove</button>
+	<br><br>
+	
+
+	</div>
+	</body>
+</html>	
