@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<script src='Jerva.js'></script>
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Jim+Nightshade" rel="stylesheet">
+	<style>
+
+	body {
+background-color: #C3AEAE;
+font-family: 'Inconsolata', monospace;
+}
+	
+	h1 {
+font-size: 20px;
+font-family: 'Jim Nightshade', cursive;	
+}
+
+	div {
+align: center;	
+}
+
+	button{
+font-family: 'Inconsolata', monospace;
+line-height: 1.8;
+appearance: none;
+box-shadow: none;
+border-radius: 0;
+}
+
+
+	.rightPanel{
+float: right;	
+padding: 50px;	
+}
+
+	.leftPanel{
+float: left;
+padding: 50px;
+}
+
+	
+	
+	</style>
+	
+	</head>
+	<body onload='svLoadData()'>
+	<div class='leftPanel'>
+
+	<br>
+	<table>
+			<tr>
+		<th>Money</th>
+		<th>Sticks</th>
+		</tr>
+			<tr>
+		<td><p id='CurMoney'>0$</p></td>
+		<td><p id='CurSticks'>0</p></td>
+		</tr>
+			<tr>
+		<td id='MoneyButtonTd'><button onclick='getMoney(1)'>Get Money</button></td>
+		<td id='StickButtonTd'><button onclick='getStick(1)'>Buy A Stick</button></td>
+		</tr>
+			<tr>
+		<td id='MoneyCostTd'></td>
+		<td id='StickCostTd'><p id='StickCost'>4$</p></td>
+		</tr>
+	</table>
+
+	<br><br><button onclick='addUpgrades()'>Purchase 'Sticked' for the low low price of 10$</button>
+	<h1>Upgrades Bought</h1>
+	<p id='Upgrades'></p>
+	</div>
+	<div class='rightPanel'>
+	<br> <button onclick='svData()'>Save Data</button>
+	<br> <button onclick='svLoadData()'>Load Data</button>
+	<br> <button onclick='rmvSave()'>Remove</button>
+	
+	</div>
+	</body>
+</html>	
