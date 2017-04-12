@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src='FinJs.js'></script>
+	<link href="https://fonts.googleapis.com/css?family=Droid+Serif|Jim+Nightshade" rel="stylesheet">
+<style>
+	body{
+background-color: #C3BAAE;
+font-family: 'Droid Serif', serif;
+}
+	h1{
+font-family: 'Jim Nightshade', cursive;
+font-size: 24;	
+}
+	p{
+align: center;	
+}
+	button{
+border: none;
+padding: 10px;
+text-align: center;
+display: inline-block;
+}
+	#story{
+width: 40%;	
+}
+	#mapDiv{
+width: 50%;
+float: left;
+display: inline-block;
+}
+	#invDiv{
+width: 50%;
+float: right;
+display: inline-block;
+}
+	#skillDiv{
+clear: both;
+width: 100%;
+}
+</style>
+</head>
+<body>
+<br>
+<br>
+<div align='center'>
+<h1 id='title'>Text Adventure Game</h1>
+<br>
+<p id='story'><button onclick='startGame()'>Click Here To Start!</button></p>
+</div>
+<div align='center' id='mapDiv'>
+<h1>Your Map</h1>
+<p id='map'></p>
+</div>
+<div align='center' id='invDiv'>
+<h1>Your Inventory</h1>
+<p id='inv'></p>
+</div>
+<br>
+<div align='center' id='skillDiv'>
+</div>
+
+</body>
+</html>
