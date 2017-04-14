@@ -1,0 +1,156 @@
+
+
+//Start Game Code
+
+function startGame() {
+var newText = " You fall out of a tree that you were sleeping in," +
+" and because you fell so hard you lost your memory!";
+
+var mapText = "<button onclick='walkTrail()'>A Small Trail</button>"
+document.getElementById('map').innerHTML = mapText;
+document.getElementById('story').innerHTML = newText;
+	}
+var skillBook = 0;
+function walkTrail(set) {
+if(set == 1 || skillBook == 1){
+skillBook = 1;
+getSkillBook();
+var newText = " A Small Walking Path, You Cannot View Anything Else";
+	}
+if(skillBook !== 1){
+console.log(skillBook);
+var newText = " A Small Walking Path, However You Can See A <i onclick='walkTrail(1)'>Skill Book</i>";
+	}
+var mapText = "<button onclick='walkTree()'>The Tree</button>" 
+if(skillBook == 1){
+mapText += "<br> <button onclick='walkSecTrail()'>The Other Trail</button>"
+	}	
+document.getElementById('map').innerHTML = mapText;
+document.getElementById('story').innerHTML = newText;
+	}
+	
+function walkTree(set){
+var newText = " The Tree You Woke Up At";
+var mapText = "<button onclick='walkTrail()'>The Trail</button>"
+
+document.getElementById('map').innerHTML = mapText;
+document.getElementById('story').innerHTML = newText;
+}
+var attButton = 0;
+function walkSecTrail(){
+var Attacked = Math.floor(Math.random() * 5 + 1);  
+var attBy = Math.floor(Math.random() * 3);
+if(Attacked >= 0 && attackingSkill < 1){
+var newText = "You Were Attacked By Unknown Assialant";
+var mapText = "<button onclick='walkTrail()'>Start From The Beginning</button>";
+}
+
+if(attButton === 0){
+attButton = 1;
+console.log(attButton);
+var newText = "You Can Now Train Your Attacking!" +
+"</p><p><button onclick='trainSk(0)'>Attack Skill Train</button>";
+var mapText = "<button onclick='walkTrail()'>The Trail</button>";
+}
+
+
+document.getElementById('map').innerHTML = mapText;
+document.getElementById('story').innerHTML = newText;
+}
+var attackingSkill = 0;
+var jumpingSkill = 0;
+var observationSkill = 0;
+function getSkillBook(){
+jumpingSkill = 1;
+observationSkill = 1;
+attackingSkill = 0;
+var newText = "<h1>Skill-Book</h1>"+
+"<p>Observation: <i id='observationSk'>1</i> <b id='obvTill'> </b></p>"+
+"<p>Jumping: <i id='jumpingSk'>1</i> <b id='jmpTill'> </b></p>" +
+"<p>Attack: <i id='attackingSk'>0</i> <b id='attTill'> </b></p>"
+
+document.getElementById('skillDiv').innerHTML = newText;
+}
+var attClicks = 0;
+var obvClicks = 0;
+var jmpClicks = 0;
+var Jrec = 20;
+var Orec = 20;
+var Arec = 20;
+function trainSk(set){
+if(set == 0){
+attClicks ++;
+if(attClicks >= Arec){
+attackingSkill ++;
+Arec += 10;
+attClicks = 0;
+	}
+		}
+if(set == 1){
+obvClicks ++;
+if(obvClicks >= Orec){
+observationSkill ++;
+Orec += 10;
+obvClicks = 0;
+	}
+		}
+if(set == 2){
+jmpClicks ++;
+if(jmpClicks >= Jrec){
+jumpingSkill ++;
+Jrec += 10;
+jmpClicks = 0;
+	}
+		}
+document.getElementById("attTill").innerHTML = attClicks + "/" + Arec;
+document.getElementById("attackingSk").innerHTML = attackingSkill;
+document.getElementById("obvTill").innerHTML = obvClicks + "/" + Orec;
+document.getElementById("observationSk").innerHTML = observationSkill;
+document.getElementById("jmpTill").innerHTML = jmpClicks + "/" + Jrec;
+document.getElementById("jumpingSk").innerHTML = jumpingSkill;
+}
+
+
+//View Below For Inventory System
+
+var allItems = [' Knife'];
+var curItems = [];
+
+
+//Variables Used In Dealing With Items
+//Checking Items Here
+var amountItem = 0;
+var temporaryAmount = 0;
+var tmpItem = -1;
+
+function CheckItem(input){
+return curItems.lastIndexOf(allItems[input]); 
+}
+
+function checkAmountItem(item) {
+amountItem = 0;
+temporaryAmount = 0;
+tmpItem = item;
+curItems.forEach(checkAmount);
+temporaryAmount = 0;
+tmpItem = -1;
+return(amountItem);}
+
+function checkAmount(curVal, index){
+if(curVal == allItems[tmpItem]){
+temporaryAmount ++; // <--- Spaghetti Codes
+amountItem = temporaryAmount;}
+}
+//Adding/Removal Of Items Is Dealt With Here
+function AddItem(input){
+curItems.unshift(allItems[input])
+console.log(curItems);
+}
+function RemoveItem(input){
+var removalOfThing = CheckItem(input);
+	console.log(removalOfThing);
+	curItems.splice(removalOfThing, 1);
+}
+
+
+
